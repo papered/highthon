@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                 response: Response<ArrayList<ArticleModel>>
             ) {
                 Log.e("test", "들어옴")
+                articleModel.addAll(response.body()!!)
                 val adapter = ArticleAdapter(response.body()!!)
                 recyclerView.adapter = adapter
             }
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onItemClick(view: View, position: Int) {
-
+                        Log.e("test",articleModel.get(position).id.toString())
                     }
                 })
         )
