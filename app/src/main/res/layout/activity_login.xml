@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@drawable/back_login">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/ic_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:inputType="text"
+        android:maxLines="1"
+        android:id="@+id/edit_id"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:layout_marginTop="40dp"
+        android:hint="아이디"
+        android:textSize="12sp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:paddingStart="12dp"
+        app:layout_constraintWidth_percent="0.55"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:inputType="numberPassword"
+        android:maxLines="1"
+        android:id="@+id/edit_pass"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintTop_toBottomOf="@id/edit_id"
+        android:layout_marginTop="12dp"
+        android:hint="비밀번호"
+        android:textSize="12sp"
+        android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:paddingStart="12dp"
+        app:layout_constraintWidth_percent="0.55"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintTop_toBottomOf="@id/edit_pass"
+        android:layout_marginTop="12dp"
+        android:text="로그인"
+        android:textColor="#9c13eb"
+        app:layout_constraintWidth_percent="0.55"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호를 잊어버렸나요 ?   CLICK"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/login"
+        app:layout_constraintStart_toStartOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        android:layout_marginTop="8dp"/>
+
+
+    <LinearLayout
+        android:id="@+id/login_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_edit"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        app:layout_constraintWidth_percent="0.55">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_facebook"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="페이스북으로 로그인"
+            android:layout_marginStart="12dp"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
