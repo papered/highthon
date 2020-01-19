@@ -99,6 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view_category" />
 
     <ImageView
+        android:id="@+id/writeFab"
         android:layout_width="48dp"
         android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="parent"

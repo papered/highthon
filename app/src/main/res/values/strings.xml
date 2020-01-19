@@ -2,4 +2,6 @@
     <string name="app_name">fortunecookie</string>
     <string name="facebook_app_id">2337547539868676</string>
     <string name="fb_login_protocol_scheme">fb2337547539868676</string>
+    <string name="qna">Q&amp;A</string>
+    <string name="article">게시글</string>
 </resources>

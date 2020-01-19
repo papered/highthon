@@ -1,6 +1,7 @@
 package pape.red.fortunecookie
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +15,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isGone
+import pape.red.fortunecookie.ui.article.ArticleActivity
+import pape.red.fortunecookie.ui.write.WriteActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,24 +32,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-
-        Connecter.api.getArticle().enqueue(object : Callback<ArrayList<ArticleModel>> {
-            override fun onFailure(call: Call<ArrayList<ArticleModel>>, t: Throwable) {
-                Log.e("test", t.toString())
-            }
-
-            override fun onResponse(
-                call: Call<ArrayList<ArticleModel>>,
-                response: Response<ArrayList<ArticleModel>>
-            ) {
-                Log.e("test", "들어옴")
-                articleModel.addAll(response.body()!!)
-                val adapter = ArticleAdapter(response.body()!!)
-                recyclerView.adapter = adapter
-            }
-
-        })
 
         recycler_category.adapter = CategoryAdapter(categoryModel)
         view.setOnClickListener {
@@ -101,7 +86,9 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onItemClick(view: View, position: Int) {
-                        Log.e("test",articleModel.get(position).id.toString())
+                        val intent = Intent(baseContext, ArticleActivity::class.java)
+                        intent.putExtra("id", articleModel[position].id)
+                        startActivity(intent)
                     }
                 })
         )
@@ -124,6 +111,30 @@ class MainActivity : AppCompatActivity() {
                     imm.hideSoftInputFromWindow(add_category.windowToken,0)
                 }
             }
+        })
+
+        writeFab.setOnClickListener {
+            startActivity(Intent(baseContext, WriteActivity::class.java))
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Connecter.api.getArticle().enqueue(object : Callback<ArrayList<ArticleModel>> {
+            override fun onFailure(call: Call<ArrayList<ArticleModel>>, t: Throwable) {
+                Log.e("test", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<ArrayList<ArticleModel>>,
+                response: Response<ArrayList<ArticleModel>>
+            ) {
+                Log.e("test", "들어옴")
+                articleModel.addAll(response.body()!!)
+                val adapter = ArticleAdapter(response.body()!!)
+                recyclerView.adapter = adapter
+            }
+
         })
     }
 }

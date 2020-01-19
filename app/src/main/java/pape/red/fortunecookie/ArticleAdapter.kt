@@ -33,11 +33,11 @@ class ArticleAdapter(val adoptModel: ArrayList<ArticleModel>) :
                 articleModel.content?.forEach {
                     content = content + it
             }
-            textContent.text = content
+            textContent.text = articleModel.content?.get(0) ?: ""
 
             articleType.setImageResource(
-                if (articleModel.question) R.drawable.ic_question
-                else R.drawable.ic_article
+                if (articleModel.question) R.drawable.ic_article
+                else R.drawable.ic_question
             )
 
             textLike.text = articleModel.like.toString()

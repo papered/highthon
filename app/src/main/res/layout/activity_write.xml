@@ -1,24 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.write.WriteActivity">
+<layout>
 
+    <data>
 
-    <Button
-        android:id="@+id/imageSubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="눌러"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <variable
+            name="viewModel"
+            type="pape.red.fortunecookie.ui.write.WriteViewModel" />
+    </data>
 
-    <ImageView
-        android:id="@+id/imageViewForTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.write.WriteActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/write_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/write_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:lineSpacingExtra="5sp"
+            android:text="취소"
+            android:textColor="#d6d6d6"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/write_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/write_titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="-8sp"
+            android:text="게시글 작성하기"
+            android:textColor="#454545"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/write_toolbar"
+            app:layout_constraintEnd_toEndOf="@+id/write_toolbar"
+            app:layout_constraintStart_toStartOf="@+id/write_toolbar"
+            app:layout_constraintTop_toTopOf="@+id/write_toolbar" />
+
+        <ImageView
+            android:id="@+id/write_submitButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="18dp"
+            android:src="@drawable/write_submit"
+            app:layout_constraintBottom_toTopOf="@+id/write_title"
+            app:layout_constraintEnd_toEndOf="@+id/write_toolbar"
+            app:layout_constraintTop_toTopOf="@+id/write_toolbar" />
+
+        <EditText
+            android:id="@+id/write_title"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="#e5e5e5"
+            android:hint="제목 입력"
+            android:paddingStart="20dp"
+            android:text="@={viewModel.title}"
+            android:textColor="#FFF"
+            android:textColorHint="#FFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/write_toolbar"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <EditText
+            android:id="@+id/write_tags"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="#ececec"
+            android:hint="태그 입력"
+            android:paddingStart="20dp"
+            android:text="@={viewModel.tags}"
+            android:textColor="#FFF"
+            android:textColorHint="#FFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/write_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/writeList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/write_tags"
+            tools:listitem="@layout/item_write_list_text" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/write_bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:background="@drawable/top_radius_purple"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/write_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:lineSpacingExtra="-7sp"
+                android:text="질문 글"
+                android:textColor="@{viewModel.isQuestion ? @color/colorSelected : @color/colorNotSelected}"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/write_hugi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:lineSpacingExtra="-7sp"
+                android:text="후기 글"
+                android:textColor="@{viewModel.isQuestion ? @color/colorNotSelected : @color/colorSelected}"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/write_question"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/write_submitFile"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_link"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/write_submitImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/write_submitImage"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_submit_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
